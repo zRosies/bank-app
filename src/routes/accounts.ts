@@ -6,11 +6,7 @@ import {
   getAllAccounts,
   updateAccount,
 } from "../controllers/accounts";
-import {
-  tokenValidation,
-  validate,
-  validateAccount,
-} from "../validation/validator";
+import { tokenValidation, validate, validateAccount } from "../utils/validator";
 import { authentication } from "./authentication";
 
 const route = express.Router();

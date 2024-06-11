@@ -5,7 +5,7 @@ import {
   postTransacations,
   updateTransaction,
 } from "../controllers/transactions";
-import { validate, validateTransaction } from "../validation/validator";
+import { validate, validateTransaction } from "../utils/validator";
 import { authentication } from "./authentication";
 
 const route = express.Router();
