@@ -7,6 +7,11 @@ export interface Transaction {
   status?: string;
 }
 
+export interface User {
+  email: string;
+  password: string;
+}
+
 export interface Account {
   user_id: string;
   name: string;

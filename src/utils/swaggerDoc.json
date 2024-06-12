@@ -1,16 +1,59 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Picpay",
-    "description": "Bank transaction plataform",
+    "title": "Bank Transactions",
+    "description": "Bank transaction plataform. Login using the authentication to receive the bearer token for the other routes.",
     "version": "2.0.0"
   },
-  "schemes": ["http"],
+
   "paths": {
-    "/transactions/": {
+    "/authentication": {
       "post": {
-        "description": "Get transactions",
+        "tags": ["Authentication"],
+        "description": "Use this route to login with the default credentials and password to have full access to all the routes.",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "example": "test@gmail.com"
+                },
+                "password": {
+                  "example": "glob@2023"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/api/transactions/": {
+      "post": {
+        "description": "Get api",
         "tags": ["Transactions"],
+        "security": [
+          {
+            "customAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "body",
@@ -59,7 +102,7 @@
         }
       }
     },
-    "/transactions/{payer_id}": {
+    "/api/transactions/{payer_id}": {
       "get": {
         "tags": ["Transactions"],
         "description": "",
@@ -81,7 +124,7 @@
         }
       }
     },
-    "transactions/{transaction_id}": {
+    "/api/transactions/{transaction_id}": {
       "put": {
         "tags": ["Transactions"],
         "description": "",
@@ -111,17 +154,12 @@
         }
       }
     },
-    "/accounts/": {
+    "/api/accounts/": {
       "post": {
         "tags": ["Accounts"],
         "description": "",
         "produces": ["application/json"],
         "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          },
           {
             "name": "body",
             "in": "body",
@@ -172,7 +210,7 @@
         }
       }
     },
-    "/accounts/{user_id}": {
+    "/api/accounts/{user_id}": {
       "get": {
         "tags": ["Accounts"],
         "description": "",
@@ -259,7 +297,7 @@
         }
       }
     },
-    "/balance/": {
+    "/api/balance/": {
       "get": {
         "tags": ["Balance"],
         "description": "",
@@ -280,7 +318,7 @@
         }
       }
     },
-    "/balance/{user_id}": {
+    "/api/balance/{user_id}": {
       "get": {
         "tags": ["Balance"],
         "description": "",

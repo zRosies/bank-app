@@ -1,7 +1,6 @@
 import express from "express";
 import { getAllBalances, getBalanceById } from "../controllers/balance";
-import { authentication } from "./authentication";
-
+import { authentication } from "../controllers/authentication";
 const route = express.Router();
 
 route.get("/", authentication, getAllBalances);
