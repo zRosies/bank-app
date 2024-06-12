@@ -26,7 +26,7 @@ export async function jwtLogin(
   );
   if (!mathPassword) {
     if (retry > 0) {
-      //Using recursion after 5s to retry to connect
+      // Using recursion after 5s to retry the connection
       console.log("Retrying to connect..." + retry);
       setTimeout(() => {
         jwtLogin(req, res, next, (retry -= 1));
@@ -38,6 +38,7 @@ export async function jwtLogin(
       .json({ message: "Unauthorized. Email or password is incorrect" });
   }
 
+  // ----------- Giving the user a token and storing it in the cookie -------
   const accessToken = jwt.sign(
     user.email,
     `${process.env.ACCESS_TOKEN_SECRET}`,
@@ -46,7 +47,7 @@ export async function jwtLogin(
     }
   );
   // My time zone is 3h before the Dev tools timezone
-  // Ex: 2024-06-12T01:06:33.440Z // Mine is  2024-05-12T10:06:33.440Z
+  // Ex: 2024-06-12T01:06:33.440Z // Mine is 2024-05-12T10:06:33.440Z
   // The timezone format is YY/MM/DD-T-hh:mm:ss.SSS
   res.cookie("accessToken", accessToken, {
     // maxAge is set in miliseconds; Ex:  1000 = 1s, 60 * 1000 = 5 seconds, 5 * 60000 = 5 minutes
