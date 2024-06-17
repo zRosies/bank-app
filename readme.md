@@ -1,6 +1,6 @@
 # Overview
 
-The project will be an API that emulates bank transactions using HTTP requests. The program will allow the users to manage their accounts, see their balance, send money, and see the history of transactions.
+The project is an API that emulates bank transactions using HTTP requests. The program allows users to manage their accounts, see their balance, send money, and see the history of transactions.
 
 [Software Demo Video](http://youtube.link.goes.here)
 
@@ -12,7 +12,7 @@ Typescript, Swagger, Zod, JWT, Github/Git, MongoDB
 
 - [Swagger](https://swagger.io/docs/)
 - [JWT](https://jwt.io/)
-- [zod](https://www.npmjs.com/package/zod)
+- [Exoress Validator](https://express-validator.github.io/docs)
 
 # Future Work
 

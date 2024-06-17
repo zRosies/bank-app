@@ -1,20 +1,21 @@
 import express from "express";
-import {
-  createAccount,
-  deleteAccount,
-  getAllAccountById,
-  getAllAccounts,
-  updateAccount,
-} from "../controllers/accounts";
+import AccountController from "../controllers/accounts";
 import { validate, validateAccount } from "../utils/validator";
 import { authentication } from "../controllers/authentication";
 
 const route = express.Router();
+const accounts = new AccountController();
 
-route.post("/", authentication, validateAccount(), validate, createAccount);
-route.get("/", getAllAccounts);
-route.get("/:user_id", getAllAccountById);
-route.put("/:user_id", authentication, updateAccount);
-route.delete("/:user_id", authentication, deleteAccount);
+route.post(
+  "/",
+  authentication,
+  validateAccount(),
+  validate,
+  accounts.createAccount
+);
+route.get("/", accounts.getAllAccounts);
+route.get("/:user_id", accounts.getAllAccountById);
+route.put("/:user_id", authentication, accounts.updateAccount);
+route.delete("/:user_id", authentication, accounts.deleteAccount);
 
 export default route;
