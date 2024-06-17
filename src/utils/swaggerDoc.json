@@ -5,7 +5,6 @@
     "description": "Bank transaction plataform. Login using the authentication to receive the bearer token for the other routes.",
     "version": "2.0.0"
   },
-
   "paths": {
     "/authentication": {
       "post": {

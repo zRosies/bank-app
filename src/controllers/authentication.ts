@@ -14,6 +14,7 @@ export async function jwtLogin(
 ) {
   const user: User = req.body;
 
+  console.log("-------A----------------");
   const existingUser = (await getDb()
     .db("picpay")
     .collection("user_account")
@@ -38,25 +39,33 @@ export async function jwtLogin(
       .json({ message: "Unauthorized. Email or password is incorrect" });
   }
 
-  // ----------- Giving the user a token and storing it in the cookie -------
-  const accessToken = jwt.sign(
-    user.email,
-    `${process.env.ACCESS_TOKEN_SECRET}`,
-    {
-      expiresIn: "1m",
-    }
-  );
-  // My time zone is 3h before the Dev tools timezone
-  // Ex: 2024-06-12T01:06:33.440Z // Mine is 2024-05-12T10:06:33.440Z
-  // The timezone format is YY/MM/DD-T-hh:mm:ss.SSS
-  res.cookie("accessToken", accessToken, {
-    // maxAge is set in miliseconds; Ex:  1000 = 1s, 60 * 1000 = 5 seconds, 5 * 60000 = 5 minutes
-    maxAge: 60000 * 5,
-    httpOnly: true,
-  });
-  res.status(200).json({ jwtToken: accessToken });
+  console.log("-------B----------------");
 
-  next();
+  try {
+    // ----------- Giving the user a token and storing it in the cookie -------
+    const accessToken = jwt.sign(
+      { email: user.email },
+      `${process.env.ACCESS_TOKEN_SECRET}`,
+      {
+        expiresIn: "1m",
+      }
+    );
+    // My time zone is 3h before the Dev tools timezone
+    // Ex: 2024-06-12T01:06:33.440Z // Mine is 2024-05-12T10:06:33.440Z
+    // The timezone format is YY/MM/DD-T-hh:mm:ss.SSS
+    res.cookie("accessToken", accessToken, {
+      // maxAge is set in miliseconds; Ex:  1000 = 1s, 60 * 1000 = 5 seconds, 5 * 60000 = 5 minutes
+      maxAge: 60000 * 5,
+      httpOnly: true,
+    });
+    res.status(200).json({ jwtToken: accessToken });
+
+    console.log("-------C----------------");
+    next();
+  } catch (error) {
+    console.log("-------D----------------");
+    throw error;
+  }
 }
 
 // ------------------------ Checking the authentication here ------------------------------
