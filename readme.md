@@ -2,7 +2,7 @@
 
 The project is an API that emulates bank transactions using HTTP requests. The program allows users to manage their accounts, see their balance, send money, and see the history of transactions.
 
-[Software Demo Video](http://youtube.link.goes.here)
+[Software Demo Video](https://www.youtube.com/watch?v=6ywK-hLOH-Q&ab_channel=GustavoLuz)
 
 # Development Environment
 
