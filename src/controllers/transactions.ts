@@ -32,7 +32,9 @@ export const postTransacations = async (req: Request, res: Response) => {
       return res.status(412).json({
         error: "You have no sufficient money to complete this operation",
       });
-    } else if (user_info?.store_owner || transaction.value > 50000) {
+    }
+    // Store owners can only receive money and transactions cannot be > 50000
+    else if (user_info?.store_owner || transaction.value > 50000) {
       const failedTransaction = { ...transaction, status: "blocked" };
       const data = await getDb()
         .db("picpay")

@@ -14,7 +14,6 @@ export async function jwtLogin(
 ) {
   const user: User = req.body;
 
-  console.log("-------A----------------");
   const existingUser = (await getDb()
     .db("picpay")
     .collection("user_account")
@@ -39,7 +38,6 @@ export async function jwtLogin(
       .json({ message: "Unauthorized. Email or password is incorrect" });
   }
 
-  console.log("-------B----------------");
 
   try {
     // ----------- Giving the user a token and storing it in the cookie -------
@@ -59,11 +57,8 @@ export async function jwtLogin(
       httpOnly: true,
     });
     res.status(200).json({ jwtToken: accessToken });
-
-    console.log("-------C----------------");
     next();
   } catch (error) {
-    console.log("-------D----------------");
     throw error;
   }
 }

@@ -6,13 +6,13 @@ The project is an API that emulates bank transactions using HTTP requests. The p
 
 # Development Environment
 
-Typescript, Swagger, Zod, JWT, Github/Git, MongoDB
+Typescript, Swagger, JWT, Github/Git, MongoDB
 
 # Useful Websites
 
 - [Swagger](https://swagger.io/docs/)
 - [JWT](https://jwt.io/)
-- [Exoress Validator](https://express-validator.github.io/docs)
+- [Express Validator](https://express-validator.github.io/docs)
 
 # Future Work
 
