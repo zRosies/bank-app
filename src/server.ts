@@ -19,7 +19,7 @@ app
     next();
   })
   .get("/", (req: Request, res: Response) => {
-    res.send("PicPay Challenge!");
+    res.send("Bank app!");
   })
   .use("/", routes);
 
